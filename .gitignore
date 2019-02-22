@@ -5,3 +5,4 @@ step2.hs
 *.o
 .vscode
 *.hi
+.stack-work
