@@ -1,0 +1,7 @@
+deBruijn
+deBruijn.hi
+step1.hs
+step2.hs
+*.o
+.vscode
+*.hi
