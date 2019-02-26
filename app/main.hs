@@ -23,20 +23,38 @@ makeMyReverse string n alphabet = ((reverse (take (n - 1) (reverse string))) ++ 
 
 preferOne :: String -> Int -> String -> Int -> IO()
 preferOne string n alphabet index
-    | (length string) == ((length alphabet) ^ n) = putStrLn (reverse string)
+    | (length string) == ((length alphabet) ^ n) = putStrLn string
     | otherwise = if ((length alphabet) - 1) == index then preferOne (string ++ [(alphabet !! index)]) n alphabet 0
                     else if myUniqueN string (makeMyReverse string n [(alphabet !! index)]) (length string) n == True
                         then preferOne string n alphabet (index + 1)
                         else preferOne (string ++ [(alphabet !! index)]) n alphabet 0
 
-main = do
-    toto <- getArgs
-    if toto == ["--check"] then do
+rInt :: String -> Int
+rInt = read
+
+myFill :: Int -> String -> String
+myFill 1 string = string
+myFill a string = myFill (a - 1) (string ++ [(head string)])
+
+myMain :: [String] -> IO()
+myMain argv
+    | argv == ["--unique"] = do
         a <- getLine
         b <- getLine
         myUnique a b (length a)
-        else do
-            preferOne "000" 3 "10" 0
+    | argv == ["--check"] = do
+        putStrLn ""
+    | argv == ["--clean"] = do
+        putStrLn ""
+    | (length argv) == 1 = do
+        preferOne (myFill (rInt (head argv)) "0") (rInt (head argv)) "10" 0
+    | (length argv) == 2 = do
+        preferOne (myFill (rInt (head argv)) [(last (last argv))]) (rInt (head argv)) (last argv) 0
+    | argv == [] = preferOne "000" 3 "01" 0
+
+main = do
+    argv <- getArgs
+    myMain argv
             -- putStrLn "USAGE: ./deBruijn n [a] [--check|--unique|--clean]"
             -- putStrLn ""
             -- putStrLn "\t--check\t\tcheck if a sequence is a de Bruijn sequence"
