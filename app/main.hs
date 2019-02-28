@@ -1,17 +1,12 @@
 import System.Environment
 import System.Exit
 import Debug.Trace
+import Data.List
 
 myUnique :: String -> String -> Int -> IO()
 myUnique a b 0 = putStrLn "OK"
 myUnique a b c = if a == b then putStrLn "KO"
                 else myUnique a (last b : init b) (c - 1)
-
-myPrint :: Int -> IO()
-myPrint a = print a
-
-myPrintNul :: String -> IO()
-myPrintNul a = print a
 
 myUniqueN :: String -> String -> Int -> Int -> Bool
 myUniqueN a b 0 n = False
@@ -29,6 +24,10 @@ preferOne string n alphabet index
                         then preferOne string n alphabet (index + 1)
                         else preferOne (string ++ [(alphabet !! index)]) n alphabet 0
 
+myCheck :: String -> Int -> [String] -> Int -> IO()
+myCheck string a tab 0 = putStrLn "OK"
+myCheck string a tab c = if find (== (take a string)) tab == Nothing then myCheck (last string : init string) a ((take a string) : tab) (c - 1) else putStrLn "KO"
+
 rInt :: String -> Int
 rInt = read
 
@@ -43,22 +42,25 @@ myMain argv
         b <- getLine
         myUnique a b (length a)
     | argv == ["--check"] = do
-        putStrLn ""
+        myCheck "10111000" 3 [] 8
     | argv == ["--clean"] = do
         putStrLn ""
     | (length argv) == 1 = do
         preferOne (myFill (rInt (head argv)) "0") (rInt (head argv)) "10" 0
     | (length argv) == 2 = do
         preferOne (myFill (rInt (head argv)) [(last (last argv))]) (rInt (head argv)) (last argv) 0
-    | argv == [] = preferOne "000" 3 "01" 0
+    | argv == [] = do
+        putStrLn "USAGE: ./deBruijn n [a] [--check|--unique|--clean]"
+        putStrLn ""
+        putStrLn "\t--check\t\tcheck if a sequence is a de Bruijn sequence"
+        putStrLn "\t--unique\tcheck if 2 sequences are distinct de Bruijn sequences"
+        putStrLn "\t--clean\t\tlist cleaning"
+        putStrLn "\tn\t\torder of the sequence"
+        putStrLn "\ta\t\talphabet [def: “01”]"
+        
+        
+        --preferOne "111" 3 "01" 0
 
 main = do
     argv <- getArgs
     myMain argv
-            -- putStrLn "USAGE: ./deBruijn n [a] [--check|--unique|--clean]"
-            -- putStrLn ""
-            -- putStrLn "\t--check\t\tcheck if a sequence is a de Bruijn sequence"
-            -- putStrLn "\t--unique\tcheck if 2 sequences are distinct de Bruijn sequences"
-            -- putStrLn "\t--clean\t\tlist cleaning"
-            -- putStrLn "\tn\t\torder of the sequence"
-            -- putStrLn "\ta\t\talphabet [def: “01”]"
