@@ -54,7 +54,9 @@ main = do
                         myCheck a (rInt (head args)) [] ((length (last args)) ^ (rInt (head args))) (last args)
                         exitWith ExitSuccess
                     [Unique] -> do
-                        putStrLn "OK unique"
+                        a <- getLine
+                        b <- getLine
+                        myUnique a b ((length (last args)) ^ (rInt (head args))) (last args)
                         exitWith ExitSuccess
                     [Clean] -> do
                         putStrLn "OK clean"
@@ -62,12 +64,12 @@ main = do
                     else case flags of
                             [Check] -> do
                                 a <- getLine
-                                myCheck a (rInt (head args)) [] (length a) "01"
+                                myCheck a (rInt (head args)) [] (2 ^ (rInt (head args))) "01"
                                 exitWith ExitSuccess
                             [Unique] -> do
                                 a <- getLine
                                 b <- getLine
-                                myUnique a b (length a)
+                                myUnique a b (2 ^ (rInt (head args))) "01"
                                 exitWith ExitSuccess
                             [Clean] -> do
                                 putStrLn "OK clean"
