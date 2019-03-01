@@ -50,7 +50,8 @@ main = do
             if length args > 2 || length args < 1 then printHelp
                 else if length args == 2 then case flags of
                     [Check] -> do
-                        putStrLn "OK check"
+                        a <- getLine
+                        myCheck a (rInt (head args)) [] ((length (last args)) ^ (rInt (head args))) (last args)
                         exitWith ExitSuccess
                     [Unique] -> do
                         putStrLn "OK unique"
@@ -61,7 +62,7 @@ main = do
                     else case flags of
                             [Check] -> do
                                 a <- getLine
-                                myCheck a (rInt (head args)) [] (length a)
+                                myCheck a (rInt (head args)) [] (length a) "01"
                                 exitWith ExitSuccess
                             [Unique] -> do
                                 a <- getLine

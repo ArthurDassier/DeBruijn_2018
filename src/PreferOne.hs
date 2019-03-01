@@ -1,7 +1,7 @@
 -- EPITECH PROJECT, 2019
 -- FUN_deBruijn_2019
 -- File description:
--- Calculs
+-- PreferOne
 
 module PreferOne (makeMyReverse,
                   preferOne) where

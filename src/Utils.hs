@@ -4,6 +4,7 @@
 -- Utils
 
 module Utils (rInt,
+              myAlpha,
               myFill,
               printHelp) where
 
@@ -11,6 +12,11 @@ import System.Exit
 
 rInt :: String -> Int
 rInt = read
+
+myAlpha :: String -> String -> Bool
+myAlpha alphabet string = if filter (\ x -> elem x alphabet) string == string && filter (\ x -> elem x string) alphabet == alphabet
+                            then True
+                            else False
 
 myFill :: Int -> String -> String
 myFill 1 string = string
