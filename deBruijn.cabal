@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5009dee2bbb999035ced1f8985b5a30a5e51c4a2c36f22b3b0b0b52690b6e824
+-- hash: 4970c3ece49404e2ed8a42c7354e31f44fef9e5861e0ad4bef742dd6e5424297
 
 name:           deBruijn
 version:        0.1.0.0
@@ -27,7 +27,10 @@ source-repository head
 
 library
   exposed-modules:
-      Calculs
+      Check
+      PreferOne
+      Unique
+      Utils
   other-modules:
       Paths_deBruijn
   hs-source-dirs:

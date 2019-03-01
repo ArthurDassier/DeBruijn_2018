@@ -8,7 +8,10 @@
 NAME	=	deBruijn
 
 SRC		=	app/Main.hs			\
-			src/Calculs.hs		\
+			src/Utils.hs		\
+			src/Unique.hs		\
+			src/Check.hs		\
+			src/PreferOne.hs	\
 
 all:	$(NAME)
 

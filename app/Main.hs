@@ -3,7 +3,10 @@
 -- File description:
 -- Main
 
-module Main (main) where
+module Main (rInt,
+             myFill,
+             printHelp,
+             main) where
 
 import System.Console.GetOpt
 import System.Environment
@@ -11,13 +14,12 @@ import System.Exit
 import System.IO
 
 import Debug.Trace
-import Data.Char
 import Data.List
 
-import Control.Monad
-import Text.Printf
-
-import Calculs
+import Utils
+import Check
+import Unique
+import PreferOne
 
 data Flag
     = Check
@@ -29,18 +31,6 @@ flags =
     [Option [] ["check"] (NoArg Check) "check if check",
     Option [] ["clean"] (NoArg Clean) "check if clean",
     Option [] ["unique"] (NoArg Unique) "check if unique"]
-
-
-printHelp :: IO()
-printHelp = do
-    putStrLn "USAGE: ./deBruijn n [a] [--check|--unique|--clean]"
-    putStrLn ""
-    putStrLn "\t--check\t\tcheck if a sequence is a de Bruijn sequence"
-    putStrLn "\t--unique\tcheck if 2 sequences are distinct de Bruijn sequences"
-    putStrLn "\t--clean\t\tlist cleaning"
-    putStrLn "\tn\t\torder of the sequence"
-    putStrLn "\ta\t\talphabet [def: “01”]"
-    exitWith (ExitFailure 84)
 
 main :: IO()
 main = do
@@ -81,5 +71,3 @@ main = do
                             [Clean] -> do
                                 putStrLn "OK clean"
                                 exitWith ExitSuccess
-
-                                --"10111000"
