@@ -7,7 +7,8 @@
 
 NAME	=	deBruijn
 
-SRC		=	app/main.hs			\
+SRC		=	app/Main.hs			\
+			src/Calculs.hs		\
 
 all:	$(NAME)
 

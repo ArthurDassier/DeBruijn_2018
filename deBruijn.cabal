@@ -4,16 +4,16 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5baa422e8ea3d077b0c4ba9e865308f9faa909b4790f4c1509a93c66eb1d2a87
+-- hash: 5009dee2bbb999035ced1f8985b5a30a5e51c4a2c36f22b3b0b0b52690b6e824
 
 name:           deBruijn
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/deBruijn#readme>
-homepage:       https://github.com/githubuser/deBruijn#readme
-bug-reports:    https://github.com/githubuser/deBruijn/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2019 Author name here
+description:    Please see the README on GitHub at <nowhere>
+homepage:       https://github.com/no github#readme
+bug-reports:    https://github.com/no github/issues
+author:         Arthur Dassier
+maintainer:     arthur.dassier@epitech.eu
+copyright:      2019 Arthur Dassier
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
@@ -23,9 +23,11 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/deBruijn
+  location: https://github.com/no github
 
 library
+  exposed-modules:
+      Calculs
   other-modules:
       Paths_deBruijn
   hs-source-dirs:
@@ -35,7 +37,7 @@ library
   default-language: Haskell2010
 
 executable deBruijn
-  main-is: main.hs
+  main-is: Main.hs
   other-modules:
       Paths_deBruijn
   hs-source-dirs:
