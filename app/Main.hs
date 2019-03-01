@@ -70,7 +70,8 @@ main = do
                         exitWith ExitSuccess
                     else case flags of
                             [Check] -> do
-                                myCheck "10111000" 3 [] 8
+                                a <- getLine
+                                myCheck a (rInt (head args)) [] (length a)
                                 exitWith ExitSuccess
                             [Unique] -> do
                                 a <- getLine
@@ -80,3 +81,5 @@ main = do
                             [Clean] -> do
                                 putStrLn "OK clean"
                                 exitWith ExitSuccess
+
+                                --"10111000"

@@ -4,10 +4,11 @@
 -- Calculs
 
 module Calculs (myUnique,
-                myUniqueN,
+                myUniqueBool,
                 makeMyReverse,
                 preferOne,
                 myCheck,
+                myCheckBool,
                 rInt,
                 myFill) where
 
@@ -28,10 +29,10 @@ myUnique a b 0 = putStrLn "OK"
 myUnique a b c = if a == b then putStrLn "KO"
                 else myUnique a (last b : init b) (c - 1)
 
-myUniqueN :: String -> String -> Int -> Int -> Bool
-myUniqueN a b 0 n = False
-myUniqueN a b c n = if (take n a) == b then True
-                        else myUniqueN (last a : init a) b (c - 1) n
+myUniqueBool :: String -> String -> Int -> Int -> Bool
+myUniqueBool a b 0 n = False
+myUniqueBool a b c n = if (take n a) == b then True
+                        else myUniqueBool (last a : init a) b (c - 1) n
 
 makeMyReverse :: String -> Int -> String -> String
 makeMyReverse string n alphabet = ((reverse (take (n - 1) (reverse string))) ++ alphabet)
@@ -41,7 +42,7 @@ preferOne string n alphabet index
     | (length string) == ((length alphabet) ^ n) = putStrLn string
     | otherwise = if ((length alphabet) - 1) == index then do
                     preferOne (string ++ [(alphabet !! index)]) n alphabet 0
-                    else if myUniqueN string (makeMyReverse string n [(alphabet !! index)]) (length string) n == True
+                    else if myUniqueBool string (makeMyReverse string n [(alphabet !! index)]) (length string) n == True
                         then preferOne string n alphabet (index + 1)
                         else preferOne (string ++ [(alphabet !! index)]) n alphabet 0
 
@@ -50,6 +51,12 @@ myCheck string a tab 0 = putStrLn "OK"
 myCheck string a tab c = if find (== (take a string)) tab == Nothing then do
                             myCheck (last string : init string) a ((take a string) : tab) (c - 1)
                             else putStrLn "KO"
+
+myCheckBool :: String -> Int -> [String] -> Int -> Bool
+myCheckBool string a tab 0 = True
+myCheckBool string a tab c = if find (== (take a string)) tab == Nothing then do
+                                myCheckBool (last string : init string) a ((take a string) : tab) (c - 1)
+                                else False
 
 rInt :: String -> Int
 rInt = read
