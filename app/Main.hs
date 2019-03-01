@@ -19,35 +19,6 @@ import Text.Printf
 
 import Calculs
 
-
--- myMain :: [String] -> IO()
--- myMain argv
---     | argv == ["--unique"] = do
---         a <- getLine
---         b <- getLine
---         myUnique a b (length a)
---     | argv == ["--check"] = do
---         myCheck "10111000" 3 [] 8
---     | argv == ["--clean"] = do
---         putStrLn ""
---     | (length argv) == 1 = do
---         preferOne (myFill (rInt (head argv)) "0") (rInt (head argv)) "10" 0
---     | (length argv) == 2 = do
---         preferOne (myFill (rInt (head argv)) [(last (last argv))]) (rInt (head argv)) (last argv) 0
---     | argv == [] = do
---         putStrLn "USAGE: ./deBruijn n [a] [--check|--unique|--clean]"
---         putStrLn ""
---         putStrLn "\t--check\t\tcheck if a sequence is a de Bruijn sequence"
---         putStrLn "\t--unique\tcheck if 2 sequences are distinct de Bruijn sequences"
---         putStrLn "\t--clean\t\tlist cleaning"
---         putStrLn "\tn\t\torder of the sequence"
---         putStrLn "\ta\t\talphabet [def: “01”]"
---         exitWith ExitSuccess
---     | otherwise exitWith ExitFailure 84
-        
-        
-        --preferOne "111" 3 "01" 0
-
 data Flag
     = Check
     | Clean
