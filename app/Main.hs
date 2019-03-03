@@ -38,6 +38,7 @@ main = do
     av <- getArgs
     case getOpt Permute flags av of
         ([], [], []) -> printHelp
+        ([], [], _) -> printHelp
         ([], args, []) -> do
             if length args > 2 || length args < 1 then printHelp
                 else if length args == 2 then do
