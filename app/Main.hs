@@ -76,3 +76,4 @@ main = do
                             [Clean] -> do
                                 ultimateUnique "" [] (rInt (head args)) (2 ^ (rInt (head args))) "01"
                                 exitWith ExitSuccess
+        (flags, args, _) -> printHelp
