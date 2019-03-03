@@ -4,7 +4,8 @@
 -- Unique
 
 module Unique (myUnique,
-               myUniqueBool) where
+               myUniqueBool,
+               myUltimateUniqueBool) where
 
 import Data.List
 import Utils
@@ -22,3 +23,11 @@ myUniqueBool a b 0 n = False
 myUniqueBool a b c n = if (take n a) == b
                         then True
                         else myUniqueBool (last a : init a) b (c - 1) n
+
+myUltimateUniqueBool :: String -> String -> Int -> String -> Bool
+myUltimateUniqueBool a b 0 alphabet = if myAlpha alphabet a && myAlpha alphabet b
+                            then True
+                            else False
+myUltimateUniqueBool a b c alphabet = if a == b
+                            then False
+                            else myUltimateUniqueBool a (last b : init b) (c - 1) alphabet
