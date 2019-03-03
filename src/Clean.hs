@@ -35,4 +35,4 @@ ultimateUnique "END" list nb max alphabet = do
     mapM_ putStrLn (myUniquePartout tmp ((length tmp) - 1) nb max alphabet [])
 ultimateUnique input list nb max alphabet = do
     user <- getLine
-    ultimateUnique user (list ++ [input]) nb max alphabet
+    if user == "" then ultimateUnique user list nb max alphabet else ultimateUnique user (list ++ [input]) nb max alphabet
