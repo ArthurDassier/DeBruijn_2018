@@ -19,6 +19,7 @@ import Data.List
 import Utils
 import Check
 import Unique
+import Clean
 import PreferOne
 
 data Flag
@@ -59,7 +60,7 @@ main = do
                         myUnique a b ((length (last args)) ^ (rInt (head args))) (last args)
                         exitWith ExitSuccess
                     [Clean] -> do
-                        putStrLn "OK clean"
+                        ultimateUnique "" [] (rInt (head args)) ((length (last args)) ^ (rInt (head args))) (last args)
                         exitWith ExitSuccess
                     else case flags of
                             [Check] -> do
@@ -72,5 +73,5 @@ main = do
                                 myUnique a b (2 ^ (rInt (head args))) "01"
                                 exitWith ExitSuccess
                             [Clean] -> do
-                                putStrLn "OK clean"
+                                ultimateUnique "" [] (rInt (head args)) (2 ^ (rInt (head args))) "01"
                                 exitWith ExitSuccess
