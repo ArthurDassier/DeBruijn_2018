@@ -15,6 +15,7 @@ makeMyReverse :: String -> Int -> String -> String
 makeMyReverse string n alphabet = ((reverse (take (n - 1) (reverse string))) ++ alphabet)
 
 preferOne :: String -> Int -> String -> Int -> IO()
+preferOne string 0 alphabet index = putStrLn "0"
 preferOne string n alphabet index
     | (length string) == ((length alphabet) ^ n) = putStrLn string
     | otherwise = if ((length alphabet) - 1) == index then do
