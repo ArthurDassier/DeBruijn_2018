@@ -11,28 +11,28 @@ import Unique
 import Data.List
 import Debug.Trace
 
-myCheckPartout :: [String] -> Int -> Int -> Int -> String -> [String] -> [String]
-myCheckPartout [] len nb max alphabet final = final
-myCheckPartout list 0 nb max alphabet final = final
-myCheckPartout list len nb max alphabet final = do
+myCheckAll :: [String] -> Int -> Int -> Int -> String -> [String] -> [String]
+myCheckAll [] len nb max alphabet final = final
+myCheckAll list 0 nb max alphabet final = final
+myCheckAll list len nb max alphabet final = do
     if myCheckBool (head list) nb [] max alphabet == True
         then do
-            myCheckPartout (tail list) (len - 1) nb max alphabet (final ++ [(head list)])
-        else myCheckPartout (tail list) (len - 1) nb max alphabet final
+            myCheckAll (tail list) (len - 1) nb max alphabet (final ++ [(head list)])
+        else myCheckAll (tail list) (len - 1) nb max alphabet final
 
-myUniquePartout :: [String] -> Int -> Int -> Int -> String -> [String] -> [String]
-myUniquePartout [] len nb max alphabet final = final
-myUniquePartout list 1 nb max alphabet final = (final ++ [(head list)])
-myUniquePartout list len nb max alphabet final = do
+myUniqueAll :: [String] -> Int -> Int -> Int -> String -> [String] -> [String]
+myUniqueAll [] len nb max alphabet final = final
+myUniqueAll list 1 nb max alphabet final = (final ++ [(head list)])
+myUniqueAll list len nb max alphabet final = do
     if myUltimateUniqueBool (head list) (list !! 1) max alphabet == True
         then do
-            myUniquePartout (tail list) (len - 1) nb max alphabet (final ++ [(head list)])
-        else myUniquePartout (tail list) (len - 1) nb max alphabet final
+            myUniqueAll (tail list) (len - 1) nb max alphabet (final ++ [(head list)])
+        else myUniqueAll (tail list) (len - 1) nb max alphabet final
 
 ultimateUnique :: String -> [String] -> Int -> Int -> String -> IO()
 ultimateUnique "END" list nb max alphabet = do 
-    let tmp = (myCheckPartout (tail list) ((length list) - 1) nb max alphabet [])
-    mapM_ putStrLn (myUniquePartout tmp ((length tmp) - 1) nb max alphabet [])
+    let tmp = (myCheckAll (tail list) ((length list) - 1) nb max alphabet [])
+    mapM_ putStrLn (myUniqueAll tmp ((length tmp) - 1) nb max alphabet [])
 ultimateUnique input list nb max alphabet = do
     user <- getLine
     if user == "" then ultimateUnique user list nb max alphabet else ultimateUnique user (list ++ [input]) nb max alphabet
